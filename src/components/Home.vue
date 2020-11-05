@@ -115,7 +115,7 @@ export default {
       加载菜单数据
      */
     async getMenuList() {
-      const { data: res } = await this.$http.get("user/findMenu");
+      const { data: res } = await this.$http.get("/api/user/findMenu");
       if (res.code !== 200)
         return this.$message.error("获取菜单失败:" + res.msg);
        this.menuList = res.data;
@@ -124,7 +124,7 @@ export default {
       获取用户信息
      */
     async getUserInfo() {
-      const { data: res } = await this.$http.get("user/info");
+      const { data: res } = await this.$http.get("/api/user/info");
       if (res.code !== 200) {
         return this.$message.error("获取用户信息失败:" + res.msg);
       } else {

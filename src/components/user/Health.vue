@@ -281,7 +281,7 @@
 
             //打卡历史记录
             async reportHistory(){
-                const { data: res } = await this.$http.get("health/history",{
+                const { data: res } = await this.$http.get("/api/health/history",{
                     params: this.queryMap
                 });
                 if(res.code!==200){
@@ -293,7 +293,7 @@
             },
             //今日是否已签到
             async isReport(){
-                const { data: res } = await this.$http.get("health/isReport");
+                const { data: res } = await this.$http.get("/api/health/isReport");
                 if(res.code!==200){
                     return this.$message.error("今日健康报备检查错误:" + res.msg);
                 }else {
@@ -322,7 +322,7 @@
                             "/" +
                             this.ruleForm.origin;
                         const { data: res } = await this.$http.post(
-                            "health/report",
+                            "/api/health/report",
                             this.ruleForm
                         );
                         if (res.code == 200) {

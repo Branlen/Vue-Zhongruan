@@ -230,7 +230,7 @@ export default {
       this.btnDisabled = true;
       this.btnLoading = true;
       const { data: res } = await this.$http.post(
-        "role/authority/" + this.grantId,
+        "/api/role/authority/" + this.grantId,
         [].concat(
           this.$refs.tree.getCheckedKeys(),
           this.$refs.tree.getHalfCheckedKeys()
@@ -249,7 +249,7 @@ export default {
     //用户授权
     async grant(id) {
       //加载所有菜单以及用户拥有的菜单权限id
-      const { data: res } = await this.$http.get("role/findRoleMenu/" + id);
+      const { data: res } = await this.$http.get("/api/role/findRoleMenu/" + id);
       if (res.code == 200) {
         //默认选中的树的数据
         let that = this;
@@ -266,7 +266,7 @@ export default {
     },
     //加载用户列表
     async getRoleList() {
-      const { data: res } = await this.$http.get("role/findRoleList", {
+      const { data: res } = await this.$http.get("/api/role/findRoleList", {
         params: this.queryMap
       });
       if (res.code == 200) {
@@ -296,7 +296,7 @@ export default {
         } else {
           this.btnDisabled = true;
           this.btnLoading = true;
-          const { data: res } = await this.$http.post("role/add", this.addForm);
+          const { data: res } = await this.$http.post("/api/role/add", this.addForm);
           if (res.code == 200) {
             this.$message.success("添加成功");
             this.addDialogVisible = false;
@@ -312,7 +312,7 @@ export default {
     },
     //编辑
     async edit(id) {
-      const { data: res } = await this.$http.get("role/edit/" + id);
+      const { data: res } = await this.$http.get("/api/role/edit/" + id);
       if (res.code == 200) {
         this.editForm = res.data;
         this.editDialogVisible = true;
@@ -329,7 +329,7 @@ export default {
           this.btnDisabled = true;
           this.btnLoading = true;
           const { data: res } = await this.$http.put(
-            "role/update/" + this.editForm.id,
+            "/api/role/update/" + this.editForm.id,
             this.editForm
           );
           if (res.code == 200) {
@@ -368,7 +368,7 @@ export default {
         });
       });
       if (res == "confirm") {
-        const { data: res } = await this.$http.delete("role/delete/" + id);
+        const { data: res } = await this.$http.delete("/api/role/delete/" + id);
         console.log(res);
         if (res.code == 200) {
           this.$message.success("删除成功");
@@ -381,7 +381,7 @@ export default {
     //改变用户禁用状态
     async changRoleStatus(row) {
       const { data: res } = await this.$http.put(
-        "role/updateStatus/" + row.id + "/" + row.status
+        "/api/role/updateStatus/" + row.id + "/" + row.status
       );
       if (res.code !== 200) {
         this.$message.error("更新状态失败:" + res.msg);

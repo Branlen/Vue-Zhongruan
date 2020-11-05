@@ -187,7 +187,7 @@ export default {
           this.btnLoading = true;
           this.btnDisabled = true;
           const {data: res} = await this.$http.put(
-                  "productCategory/update/" + this.editRuleForm.id,
+                  "/api/productCategory/update/" + this.editRuleForm.id,
                   this.editRuleForm
           );
           if (res.code === 200) {
@@ -208,7 +208,7 @@ export default {
     },
       //修改
     async edit(id) {
-      const { data: res } = await this.$http.get("productCategory/edit/" + id);
+      const { data: res } = await this.$http.get("/api/productCategory/edit/" + id);
       if (res.code === 200) {
         this.editRuleForm = res.data;
       } else {
@@ -234,7 +234,7 @@ export default {
       });
       if (res === "confirm") {
         const { data: res } = await this.$http.delete(
-          "productCategory/delete/" + id
+          "/api/productCategory/delete/" + id
         );
         console.log(res);
         if (res.code === 200) {
@@ -258,7 +258,7 @@ export default {
     //加载分类数据
     async getCategoryList() {
       const { data: res } = await this.$http.get(
-        "productCategory/categoryTree",
+        "/api/productCategory/categoryTree",
         {
           params: this.queryMap
         }
@@ -270,7 +270,7 @@ export default {
     //加载父级分类数据
     async getParentCategoryList() {
       const { data: res } = await this.$http.get(
-        "productCategory/getParentCategoryTree"
+        "/api/productCategory/getParentCategoryTree"
       );
       if (res.code !== 200) return this.$message.error("父级分类列表失败");
       this.parentCategorys = res.data;
@@ -287,7 +287,7 @@ export default {
             this.addRuleForm.pid=0;
           }
           const { data: res } = await this.$http.post(
-            "productCategory/add",
+            "/api/productCategory/add",
             this.addRuleForm
           );
           if (res.code === 200) {

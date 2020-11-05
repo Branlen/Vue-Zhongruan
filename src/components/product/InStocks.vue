@@ -350,7 +350,7 @@
              *物资入库审核
              */
              async publish(id){
-                const { data: res } = await this.$http.put("inStock/publish/"+id);
+                const { data: res } = await this.$http.put("/api/inStock/publish/"+id);
                 if (res.code !== 200) {
                     return this.$message.error("审核失败:"+res.msg);
                 } else {
@@ -362,7 +362,7 @@
              * 从回收站恢复
              */
             async back(id){
-                const { data: res } = await this.$http.put("inStock/back/"+id);
+                const { data: res } = await this.$http.put("/api/inStock/back/"+id);
                 if (res.code !== 200) {
                     return this.$message.error("从回收站恢复失败:"+res.msg);
                 } else {
@@ -374,7 +374,7 @@
              * 移除回收站
              */
             async remove(id) {
-                const {data: res} = await this.$http.put("inStock/remove/" + id);
+                const {data: res} = await this.$http.put("/api/inStock/remove/" + id);
                 if (res.code !== 200) {
                     return this.$message.error("移入回收站失败:" + res.msg);
                 } else {
@@ -385,7 +385,7 @@
             /**删除明细
              */
             async del(id) {
-                const {data: res} = await this.$http.get("inStock/delete/" + id);
+                const {data: res} = await this.$http.get("/api/inStock/delete/" + id);
                 if (res.code !== 200) {
                     return this.$message.error("删除失败:" + res.msg);
                 } else {
@@ -398,7 +398,7 @@
              */
             async detail(id) {
                 this.detailId=id;
-                const {data: res} = await this.$http.get("inStock/detail/" + id+"?pageNum="+this.pageNum);
+                const {data: res} = await this.$http.get("/api/inStock/detail/" + id+"?pageNum="+this.pageNum);
                 if (res.code !== 200) {
                     this.$message.error("获取明细失败:" + res.msg);
 
@@ -424,7 +424,7 @@
                     this.queryMap.endTime=this.range[1];
                 }
 
-                const {data: res} = await this.$http.get("inStock/findInStockList", {
+                const {data: res} = await this.$http.get("/api/inStock/findInStockList", {
                     params: this.queryMap
                 });
                 if (res.code !== 200) {

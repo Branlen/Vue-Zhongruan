@@ -370,7 +370,7 @@ export default {
         });
       });
       if (res == "confirm") {
-        const { data: res } = await this.$http.delete("supplier/delete/" + id);
+        const { data: res } = await this.$http.delete("/api/supplier/delete/" + id);
         if (res.code == 200) {
           this.$message.success("来源删除成功");
           this.getSupplierList();
@@ -387,7 +387,7 @@ export default {
         } else {
 
           const { data: res } = await this.$http.put(
-            "supplier/update/" + this.editRuleForm.id,
+            "/api/supplier/update/" + this.editRuleForm.id,
             this.editRuleForm
           );
           if (res.code == 200) {
@@ -408,7 +408,7 @@ export default {
     },
     //编辑
     async edit(id) {
-      const { data: res } = await this.$http.get("supplier/edit/" + id);
+      const { data: res } = await this.$http.get("/api/supplier/edit/" + id);
       if (res.code == 200) {
         this.editRuleForm = res.data;
       } else {
@@ -429,7 +429,7 @@ export default {
             "/" +
             this.addRuleForm.origin;
           const { data: res } = await this.$http.post(
-            "supplier/add",
+            "/api/supplier/add",
             this.addRuleForm
           );
           if (res.code == 200) {
@@ -445,7 +445,7 @@ export default {
     },
     //加载系别列表
     async getSupplierList() {
-      const { data: res } = await this.$http.get("supplier/findSupplierList", {
+      const { data: res } = await this.$http.get("/api/supplier/findSupplierList", {
         params: this.queryMap
       });
       if (res.code !== 200) {

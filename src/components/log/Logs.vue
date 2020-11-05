@@ -122,7 +122,7 @@ export default {
         });
       });
       if (res == "confirm") {
-        const { data: res } = await this.$http.delete("log/batchDelete/" + ids);
+        const { data: res } = await this.$http.delete("/api/log/batchDelete/" + ids);
         if (res.code == 200) {
           this.$message.success("系统日志删除成功");
           this.getLogList();
@@ -142,7 +142,7 @@ export default {
 
     //加载系统日志列表
     async getLogList() {
-      const { data: res } = await this.$http.get("log/findLogList", {
+      const { data: res } = await this.$http.get("/api/log/findLogList", {
         params: this.queryMap
       });
       if (res.code !== 200) {
@@ -169,7 +169,7 @@ export default {
         });
       });
       if (res == "confirm") {
-        const { data: res } = await this.$http.delete("log/delete/" + id);
+        const { data: res } = await this.$http.delete("/api/log/delete/" + id);
         if (res.code == 200) {
           this.$message.success("系统日志删除成功");
           this.getLogList();

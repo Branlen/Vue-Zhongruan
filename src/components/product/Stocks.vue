@@ -124,7 +124,7 @@ export default {
      * 加载库存信息
      */
     async getStockList() {
-      const { data: res } = await this.$http.get("product/findProductStocks", {
+      const { data: res } = await this.$http.get("/api/product/findProductStocks", {
         params: this.queryMap
       });
       if (res.code !== 200) {
@@ -277,7 +277,7 @@ export default {
      * 物资所有的库存信息
      */
     async findAllProductStocks() {
-      const { data: res } = await this.$http.get("product/findAllStocks", {
+      const { data: res } = await this.$http.get("/api/product/findAllStocks", {
         params: this.queryMap
       });
       if (res.code !== 200) {
@@ -313,7 +313,7 @@ export default {
      */
     async getCatetorys() {
       const { data: res } = await this.$http.get(
-              "productCategory/categoryTree"
+              "/api/productCategory/categoryTree"
       );
       if (res.code !== 200) {
         return this.$message.error("获取物资类别失败");

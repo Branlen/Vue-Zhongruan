@@ -462,7 +462,7 @@
              */
             async getCatetorys() {
                 const { data: res } = await this.$http.get(
-                    "productCategory/categoryTree"
+                    "/api/productCategory/categoryTree"
                 );
                 if (res.code !== 200) {
                     return this.$message.error("获取商品类别失败");
@@ -474,7 +474,7 @@
              * 加载商品列表(可出库)
              */
             async loadTableData() {
-                const { data: res } = await this.$http.get("product/findProductStocks", {
+                const { data: res } = await this.$http.get("/api/product/findProductStocks", {
                     params: this.queryMap
                 });
                 if (res.code !== 200) {
@@ -638,7 +638,7 @@
             /**加载去向数据
              */
             async getConsumers() {
-                const { data: res } = await this.$http.get("consumer/findAll");
+                const { data: res } = await this.$http.get("/api/consumer/findAll");
                 if (res.code !== 200) {
                     return this.$message.error("获取去向数据失败");
                 } else {
@@ -711,7 +711,7 @@
                         });
                         if (res == "confirm") {
                             const { data: res } = await this.$http.post(
-                                "outStock/addOutStock",
+                                "/api/outStock/addOutStock",
                                 this.addRuleForm
                             );
                             if (res.code == 200) {

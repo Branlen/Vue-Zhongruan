@@ -66,7 +66,7 @@
         methods:{
             //详情信息
             async detail(id){
-                const { data: res } = await this.$http.get("rumor/detail/"+id);
+                const { data: res } = await this.$http.get("/api/rumor/detail/"+id);
                 if (res.code !== 200) {
                     return this.$message.error("获取谣言列表失败");
                 } else {

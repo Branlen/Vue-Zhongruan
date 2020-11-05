@@ -264,7 +264,7 @@ export default {
           this.btnLoading = true;
           this.btnDisabled = true;
           const { data: res } = await this.$http.put(
-            "menu/update/" + this.editForm.id,
+            "/api/menu/update/" + this.editForm.id,
             this.editForm
           );
           if (res.code == 200) {
@@ -287,7 +287,7 @@ export default {
     //点击编辑节点
     async edit(data) {
       this.editTitle = "编辑：【" + data.menuName + "】";
-      const { data: res } = await this.$http.get("menu/edit/" + data.id);
+      const { data: res } = await this.$http.get("/api/menu/edit/" + data.id);
       if (res.code == 200) {
         this.editForm = res.data;
         this.editlogVisible = true;
@@ -311,7 +311,7 @@ export default {
     },
     //加载菜单树
     async getMenuTree() {
-      const { data: res } = await this.$http.get("menu/tree");
+      const { data: res } = await this.$http.get("/api/menu/tree");
       if (res.code == 200) {
         this.data = res.data.tree;
         this.open = res.data.open;
@@ -349,7 +349,7 @@ export default {
       if (res == "confirm") {
         console.log(node);
         const { data: res } = await this.$http.delete(
-          "menu/delete/" + node.data.id
+          "/api/menu/delete/" + node.data.id
         );
         if (res.code == 200) {
           this.$message.success("节点删除成功");
@@ -367,7 +367,7 @@ export default {
         } else {
           this.btnLoading = true;
           this.btnDisabled = true;
-          const { data: res } = await this.$http.post("menu/add", this.addForm);
+          const { data: res } = await this.$http.post("/api/menu/add", this.addForm);
           if (res.code == 200) {
             this.$message.success("节点添加成功");
             this.addDialogVisible = false;

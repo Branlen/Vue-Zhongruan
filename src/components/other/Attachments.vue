@@ -159,7 +159,7 @@ export default {
      * 删除图片
      */
     del: async function (id) {
-      const {data: res} = await this.$http.delete("upload/delete/" + id);
+      const {data: res} = await this.$http.delete("/api/upload/delete/" + id);
       if (res.code === 200) {
         this.$message.success("删除图片成功");
         this.getImgeList();
@@ -171,7 +171,7 @@ export default {
      * 加载附件列表
      */
     async getImgeList() {
-      const { data: res } = await this.$http.get("upload/findImageList", {
+      const { data: res } = await this.$http.get("/api/upload/findImageList", {
         params: this.queryMap
       });
       if (res.code !== 200) {

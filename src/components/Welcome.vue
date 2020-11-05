@@ -219,7 +219,7 @@ export default {
      * 加载登入报表数据
      */
     async loginReport(username) {
-      const { data: res } = await this.$http.post("loginLog/loginReport", {
+      const { data: res } = await this.$http.post("/api/loginLog/loginReport", {
         username: username
       });
       if (res.code !== 200) {

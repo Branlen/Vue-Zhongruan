@@ -1,5 +1,10 @@
-# Vue-Xinguan
+# Vue-Zhongrunan
 
+安装依赖请使用 cnpm 方式安装
+## 安装cnpm
+```
+npm i -g cnpm --registry=https://registry.npm.taobao.org
+``` 
 ## Project setup
 ```
 npm install

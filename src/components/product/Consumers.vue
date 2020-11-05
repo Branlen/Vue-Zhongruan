@@ -333,7 +333,7 @@ export default {
         });
       });
       if (res == "confirm") {
-        const { data: res } = await this.$http.delete("consumer/delete/" + id);
+        const { data: res } = await this.$http.delete("/api/consumer/delete/" + id);
         if (res.code == 200) {
           this.$message.success("物资去处删除成功");
           this.getConsumerList();
@@ -349,7 +349,7 @@ export default {
           return;
         } else {
           const { data: res } = await this.$http.put(
-            "consumer/update/" + this.editRuleForm.id,
+            "/api/consumer/update/" + this.editRuleForm.id,
             this.editRuleForm
           );
           if (res.code == 200) {
@@ -373,7 +373,7 @@ export default {
      */
     async edit(id) {
       this._getJsonData();
-      const { data: res } = await this.$http.get("consumer/edit/" + id);
+      const { data: res } = await this.$http.get("/api/consumer/edit/" + id);
       if (res.code == 200) {
         this.editRuleForm = res.data;
       } else {
@@ -395,7 +395,7 @@ export default {
             "/" +
             this.addRuleForm.origin;
           const { data: res } = await this.$http.post(
-            "consumer/add",
+            "/api/consumer/add",
             this.addRuleForm
           );
           if (res.code == 200) {
@@ -413,7 +413,7 @@ export default {
      * 加载物资去处列表
      */
     async getConsumerList() {
-      const { data: res } = await this.$http.get("consumer/findConsumerList", {
+      const { data: res } = await this.$http.get("/api/consumer/findConsumerList", {
         params: this.queryMap
       });
       if (res.code !== 200) {

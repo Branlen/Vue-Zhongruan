@@ -496,7 +496,7 @@ export default {
         spinner: "el-icon-loading",
         background: "rgba(0, 0, 0, 0.7)"
       });
-      const { data: res } = await this.$http.get("user/" + id + "/roles");
+      const { data: res } = await this.$http.get("/api/user/" + id + "/roles");
       if (res.code == 200) {
         this.roles = res.data.roles;
         this.value = res.data.values;
@@ -516,7 +516,7 @@ export default {
       this.btnLoading = true;
       this.btnDisabled = true;
       const { data: res } = await this.$http.post(
-        "user/" + this.uid + "/assignRoles",
+        "/api/user/" + this.uid + "/assignRoles",
         this.value
       );
       if (res.code == 200) {
@@ -535,7 +535,7 @@ export default {
      * 加载用户列表
      */
     async getUserList() {
-      const { data: res } = await this.$http.get("user/findUserList", {
+      const { data: res } = await this.$http.get("/api/user/findUserList", {
         params: this.queryMap
       });
       if (res.code !== 200) return this.$message.error("获取用户列表失败");
@@ -564,7 +564,7 @@ export default {
         });
       });
       if (res == "confirm") {
-        const { data: res } = await this.$http.delete("user/delete/" + id);
+        const { data: res } = await this.$http.delete("/api/user/delete/" + id);
         console.log(res);
         if (res.code == 200) {
           this.$notify.success({
@@ -588,7 +588,7 @@ export default {
         } else {
           this.btnLoading = true;
           this.btnDisabled = true;
-          const { data: res } = await this.$http.post("user/add", this.addForm);
+          const { data: res } = await this.$http.post("/api/user/add", this.addForm);
           if (res.code == 200) {
             this.$notify.success({
               title:'操作成功',
@@ -617,7 +617,7 @@ export default {
           this.btnLoading = true;
           this.btnDisabled = true;
           const { data: res } = await this.$http.put(
-            "user/update/" + this.editForm.id,
+            "/api/user/update/" + this.editForm.id,
             this.editForm
           );
           if (res.code == 200) {
@@ -649,7 +649,7 @@ export default {
      * 修改用户信息
      */
     async edit(id) {
-      const { data: res } = await this.$http.get("user/edit/" + id);
+      const { data: res } = await this.$http.get("/api/user/edit/" + id);
       if (res.code == 200) {
         this.editForm = res.data;
         this.editDialogVisible = true;
@@ -692,7 +692,7 @@ export default {
      */
     async changUserStatus(row) {
       const { data: res } = await this.$http.put(
-        "user/updateStatus/" + row.id + "/" + row.status
+        "/api/user/updateStatus/" + row.id + "/" + row.status
       );
       if (res.code !== 200) {
         this.$message.error("更新用户状态失败:" + res.msg);
@@ -709,7 +709,7 @@ export default {
      * 加载所有部门
      */
     async getDepartmets() {
-      const { data: res } = await this.$http.get("department/findAll");
+      const { data: res } = await this.$http.get("/api/department/findAll");
       if (res.code !== 200) return this.$message.error("获取部门列表失败");
       this.departments = res.data;
     },

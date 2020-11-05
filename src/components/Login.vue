@@ -157,7 +157,7 @@ export default {
       this.loading = true;
       //发起登入请求
       const { data: res } = await this.$http.post(
-        "user/login?username=" +
+        "/api/user/login?username=" +
           this.userLoginForm.username +
           "&password=" +
           this.userLoginForm.password
@@ -187,7 +187,7 @@ export default {
       获取用户信息
      */
     async getUserInfo() {
-      const { data: res } = await this.$http.get("user/info");
+      const { data: res } = await this.$http.get("/api/user/info");
       if (res.code !== 200)
         return this.$message.error("获取用户信息失败:" + res.msg);
       this.userInfo = res.data;

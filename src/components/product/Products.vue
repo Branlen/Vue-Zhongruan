@@ -460,7 +460,7 @@
              * 物资添加审核
              */
             async publish(id) {
-                const {data: res} = await this.$http.put("product/publish/" + id);
+                const {data: res} = await this.$http.put("/api/product/publish/" + id);
                 if (res.code !== 200) {
                     return this.$message.error("审核失败:" + res.msg);
                 } else {
@@ -487,7 +487,7 @@
                     });
                 });
                 if (res === "confirm") {
-                    const {data: res} = await this.$http.delete("product/delete/" + id);
+                    const {data: res} = await this.$http.delete("/api/product/delete/" + id);
                     if (res.code === 200) {
                         this.$message.success("物资删除成功");
                         this.getproductList();
@@ -507,7 +507,7 @@
                         this.btnDisabled = true;
                         this.btnLoading = true;
                         const {data: res} = await this.$http.put(
-                            "product/update/" + this.editRuleForm.id,
+                            "/api/product/update/" + this.editRuleForm.id,
                             this.editRuleForm
                         );
                         if (res.code == 200) {
@@ -531,7 +531,7 @@
              * 编辑物资
              */
             async edit(id) {
-                const {data: res} = await this.$http.get("product/edit/" + id);
+                const {data: res} = await this.$http.get("/api/product/edit/" + id);
                 if (res.code == 200) {
                     this.editRuleForm = res.data;
                     var item = res.data;
@@ -562,7 +562,7 @@
                         this.btnDisabled = true;
                         this.btnLoading = true;
                         const {data: res} = await this.$http.post(
-                            "product/add",
+                            "/api/product/add",
                             this.addRuleForm
                         );
                         if (res.code == 200) {
@@ -582,7 +582,7 @@
              * 移除回收站
              */
             async remove(id) {
-                const {data: res} = await this.$http.put("product/remove/" + id);
+                const {data: res} = await this.$http.put("/api/product/remove/" + id);
                 if (res.code !== 200) {
                     return this.$message.error("移入回收站失败:" + res.msg);
                 } else {
@@ -594,7 +594,7 @@
              * 从回收站恢复
              */
             async back(id) {
-                const {data: res} = await this.$http.put("product/back/" + id);
+                const {data: res} = await this.$http.put("/api/product/back/" + id);
                 if (res.code !== 200) {
                     return this.$message.error("从回收站恢复失败:" + res.msg);
                 } else {
@@ -606,7 +606,7 @@
              * 加载物资列表
              */
             async getproductList() {
-                const {data: res} = await this.$http.get("product/findProductList", {
+                const {data: res} = await this.$http.get("/api/product/findProductList", {
                     params: this.queryMap
                 });
                 if (res.code !== 200) {
@@ -621,7 +621,7 @@
              */
             async getCatetorys() {
                 const {data: res} = await this.$http.get(
-                    "productCategory/categoryTree"
+                    "/api/productCategory/categoryTree"
                 );
                 if (res.code !== 200) {
                     return this.$message.error("获取物资类别失败");
@@ -675,7 +675,7 @@
              */
             async getCatetorys() {
                 const {data: res} = await this.$http.get(
-                    "productCategory/categoryTree"
+                    "/api/productCategory/categoryTree"
                 );
                 if (res.code !== 200) {
                     return this.$message.error("获取物资类别失败");

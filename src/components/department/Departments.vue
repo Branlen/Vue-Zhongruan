@@ -270,7 +270,7 @@ export default {
       });
       if ("confirm" === res) {
         const {data: res} = await this.$http.delete(
-                "department/delete/" + id
+                "/api/department/delete/" + id
         );
         if (res.code === 200) {
           this.$message.success("部门删除成功");
@@ -290,7 +290,7 @@ export default {
         } else {
           (this.btnLoading = true), (this.btnDisabled = true);
           const {data: res} = await this.$http.put(
-                  "department/update/" + this.editRuleForm.id,
+                  "/api/department/update/" + this.editRuleForm.id,
                   this.editRuleForm
           );
           if (res.code === 200) {
@@ -315,7 +315,7 @@ export default {
      * @param {Object} id
      */
     edit: async function (id) {
-      const {data: res} = await this.$http.get("department/edit/" + id);
+      const {data: res} = await this.$http.get("/api/department/edit/" + id);
       if (res.code === 200) {
         this.editRuleForm = res.data;
       } else {
@@ -331,7 +331,7 @@ export default {
         } else {
           (this.btnLoading = true), (this.btnDisabled = true);
           const {data: res} = await this.$http.post(
-                  "department/add",
+                  "/api/department/add",
                   this.addRuleForm
           );
           if (res.code === 200) {
@@ -349,7 +349,7 @@ export default {
     //加载部门别列表
     async getDepartmentList() {
       const { data: res } = await this.$http.get(
-        "department/findDepartmentList",
+        "/api/department/findDepartmentList",
         {
           params: this.queryMap
         }

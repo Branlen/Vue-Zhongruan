@@ -130,7 +130,7 @@ export default {
     /**加载数据*/
     //加载系统日志列表
     async getData(page) {
-      const { data: res } = await this.$http.get("rumor/list/" + page);
+      const { data: res } = await this.$http.get("/api/rumor/list/" + page);
       if (res.code !== 200) {
         return this.$message.error("获取谣言列表失败");
       } else {

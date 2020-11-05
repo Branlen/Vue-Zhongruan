@@ -102,7 +102,7 @@ export default {
         });
       });
       if (res == "confirm") {
-        const { data: res } = await this.$http.delete("loginLog/batchDelete/" + ids);
+        const { data: res } = await this.$http.delete("/api/loginLog/batchDelete/" + ids);
         if (res.code == 200) {
           this.$message.success("登入日志删除成功");
           this.getLoginLogList();
@@ -122,7 +122,7 @@ export default {
 
     //加载登入日志列表
     async getLoginLogList() {
-      const { data: res } = await this.$http.get("loginLog/findLoginLogList", {
+      const { data: res } = await this.$http.get("/api/loginLog/findLoginLogList", {
         params: this.queryMap
       });
       if (res.code !== 200) {
@@ -149,7 +149,7 @@ export default {
         });
       });
       if (res === "confirm") {
-        const { data: res } = await this.$http.delete("loginLog/delete/" + id);
+        const { data: res } = await this.$http.delete("/api/loginLog/delete/" + id);
         if (res.code === 200) {
           this.$message.success("登入日志删除成功");
           this.getLoginLogList();

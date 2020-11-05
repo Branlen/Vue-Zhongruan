@@ -506,7 +506,7 @@ export default {
           });
           if (res == "confirm") {
             const { data: res } = await this.$http.post(
-              "inStock/addIntoStock",
+              "/api/inStock/addIntoStock",
               this.addRuleForm
             );
             if (res.code == 200) {
@@ -525,7 +525,7 @@ export default {
      * 加载商品列表(可入库)
      */
     async loadTableData() {
-      const { data: res } = await this.$http.get("product/findProducts", {
+      const { data: res } = await this.$http.get("/api/product/findProducts", {
         params: this.queryMap
       });
       if (res.code !== 200) {
@@ -551,7 +551,7 @@ export default {
      */
     async getCatetorys() {
       const { data: res } = await this.$http.get(
-        "productCategory/categoryTree"
+        "/api/productCategory/categoryTree"
       );
       if (res.code !== 200) {
         return this.$message.error("获取商品类别失败");
@@ -562,7 +562,7 @@ export default {
     /**加载来源数据
      */
     async getSuppliers() {
-      const { data: res } = await this.$http.get("supplier/findAll");
+      const { data: res } = await this.$http.get("/api/supplier/findAll");
       if (res.code !== 200) {
         return this.$message.error("获取来源数据失败");
       } else {
